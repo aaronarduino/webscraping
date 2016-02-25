@@ -1,0 +1,7 @@
+Flask
+Flask-Script
+gevent
+Flask-SocketIO
+gunicorn
+lxml
+BeautifulSoup

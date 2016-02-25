@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>%% title %%</title>
+	<style type="text/css">
+		ul {
+		    padding-left: 0;
+		    font-family: Helvetica, Arial, sans-serif;
+		}
+		.staggered-transition {
+		    transition: all .1s ease;
+		    overflow: hidden;
+		    margin: 0;
+		}
+		.staggered-enter, .staggered-leave {
+		    opacity: 0;
+		    height: 0;
+		}
+	</style>
+	<script src="/static/js/vue.js"></script>
+	
+</head>
+<body>
+<div style="width: 450px; height:300px; margin-left: auto; margin-right: auto;">
+<iframe name="myIframe" src="" style="width: 450px; height:300px; border:none;"></iframe>
+</div><br>
+<div id="demo" style="width:300px; text-align: center; margin-left: auto; margin-right: auto;">
+    <input placeholder="Search coffee" v-model="query">
+    <ul>
+        <li v-for="item in list | filterBy query"
+            transition="staggered"
+            stagger="4">
+          <a href="/coffee/{{item.index}}" target="myIframe">{{item.coffee}}</a><br>
+         </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+		new Vue({
+		    el: '#demo',
+		    data: {
+		        query: '',
+		        list: [
+		        	<% for index, coffee in coffees %>
+		            { index: %% index %%, coffee: '%% coffee[0] %%' },
+		            <% endfor %>
+		        ]
+		    }
+		})
+	</script>
+</body>
+</html>
